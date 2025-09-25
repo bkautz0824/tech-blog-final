@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { getAllCategories, getArticlesByCategory } from '@/lib/articles'
+import { getAllCategories, getArticlesByCategory } from '@/lib/articles-data'
 import { TagIcon, CalendarIcon, ArrowRightIcon, DocumentTextIcon } from '@heroicons/react/24/outline'
 import { useEffect, useState } from 'react'
 

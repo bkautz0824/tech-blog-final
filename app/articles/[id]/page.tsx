@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { RetroButton } from '@/components/retro-button'
-import { getArticleById, articles } from '@/lib/articles'
+import { getArticleByIdCached, getArticlesCached, getArticleMetadata, preloadArticle } from '@/lib/articles-server'
+import type { Metadata } from 'next'
 
 interface ArticlePageProps {
   params: Promise<{
@@ -10,14 +11,54 @@ interface ArticlePageProps {
 }
 
 export async function generateStaticParams() {
+  const articles = await getArticlesCached()
   return articles.map((article) => ({
     id: article.id,
   }))
 }
 
+export async function generateMetadata({ params }: ArticlePageProps): Promise<Metadata> {
+  const { id } = await params
+  const metadata = await getArticleMetadata(id)
+
+  if (!metadata) {
+    return {
+      title: 'Article Not Found',
+      description: 'The requested article could not be found.'
+    }
+  }
+
+  return {
+    title: `${metadata.title} | Tech Blog`,
+    description: metadata.description,
+    keywords: metadata.keywords,
+    authors: [{ name: 'Tech Blog' }],
+    category: metadata.category,
+    openGraph: {
+      title: metadata.title,
+      description: metadata.description,
+      type: 'article',
+        authors: ['Tech Blog'],
+      tags: metadata.keywords,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: metadata.title,
+      description: metadata.description,
+    },
+    alternates: {
+      canonical: `/articles/${id}`,
+    },
+  }
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { id } = await params
-  const article = getArticleById(id)
+
+  // Preload the article
+  preloadArticle(id)
+
+  const article = await getArticleByIdCached(id)
 
   if (!article) {
     notFound()

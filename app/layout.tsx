@@ -5,10 +5,49 @@ import { AppWrapper } from '@/components/app-wrapper'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Dev Tools Blog - Modern Development Insights',
-  description: 'Discover cutting-edge development tools, frameworks, and resources that elevate your productivity and craft.',
-  keywords: 'development tools, programming, web development, frameworks, developer resources',
-  authors: [{ name: 'Dev Tools Blog Team' }],
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://your-domain.com'),
+  title: {
+    default: 'Tech Blog - Modern Development Tools & Insights',
+    template: '%s | Tech Blog'
+  },
+  description: 'Discover cutting-edge development tools, frameworks, and resources that elevate your productivity and craft. Stay ahead with the latest in web development.',
+  keywords: ['development tools', 'programming', 'web development', 'frameworks', 'developer resources', 'tech articles', 'coding', 'software engineering'],
+  authors: [{ name: 'Tech Blog Team' }],
+  creator: 'Tech Blog',
+  publisher: 'Tech Blog',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: '/',
+    title: 'Tech Blog - Modern Development Tools & Insights',
+    description: 'Discover cutting-edge development tools, frameworks, and resources that elevate your productivity and craft.',
+    siteName: 'Tech Blog',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Tech Blog - Modern Development Tools & Insights',
+    description: 'Discover cutting-edge development tools, frameworks, and resources that elevate your productivity and craft.',
+    creator: '@techblog',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: '/',
+  },
 }
 
 export const viewport = {

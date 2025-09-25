@@ -1,0 +1,660 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Enhanced Theme System - Sunrise/Sunset Distinction
+
+  Light Theme (Sunrise):
+  - Primary colors: Warm amber/gold tones (#d97706, #f59e0b)
+  - Accent: Deeper sunrise orange (#ea580c)
+  - Creates harmony with sunrise video background
+
+  Dark Theme (Sunset):
+  - Primary colors: Deep magenta/purple tones (#c026d3, #e879f9)
+  - Accent: Deep sunset red (#dc2626)
+  - Creates harmony with sunset video background
+
+  Both themes maintain excellent contrast ratios and accessibility standards
+  while providing distinct visual identities that complement their video backgrounds.
+*/
+
+:root {
+  /* Sophisticated Light Theme - Sunrise palette with warm, elegant tones */
+  --background: #fefefe; /* Pure white with subtle warmth */
+  --foreground: #1a1a1a; /* Rich black for optimal contrast */
+  --card: #ffffff; /* Clean white cards */
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #d97706; /* Warm amber - sunrise gold */
+  --primary-foreground: #ffffff;
+  --secondary: #fef3e8; /* Soft amber background */
+  --secondary-foreground: #1a1a1a;
+  --muted: #fefaf7; /* Lightest amber wash for subtle sections */
+  --muted-foreground: #92400e; /* Amber-brown for secondary text */
+  --accent: #ea580c; /* Deeper sunrise orange for emphasis */
+  --accent-foreground: #ffffff;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --border: #fed7aa; /* Subtle amber border */
+  --input: #ffffff;
+  --ring: #d97706;
+  --chart-1: #d97706;
+  --chart-2: #f59e0b;
+  --chart-3: #ea580c;
+  --chart-4: #fdba74;
+  --chart-5: #fed7aa;
+  --radius: 0.75rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #d97706;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #fefaf7;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #fed7aa;
+  --sidebar-ring: #d97706;
+}
+
+.dark {
+  /* Sophisticated Dark Theme - Sunset palette with deep, elegant tones */
+  --background: #0f0f0f; /* Deep black with subtle warmth */
+  --foreground: #fafafa; /* Clean white for contrast */
+  --card: #1a1a1a; /* Dark cards with subtle warmth */
+  --card-foreground: #fafafa;
+  --popover: #1a1a1a;
+  --popover-foreground: #fafafa;
+  --primary: #c026d3; /* Deep magenta - sunset purple */
+  --primary-foreground: #ffffff;
+  --secondary: #2d1b2e; /* Subtle purple-tinted background */
+  --secondary-foreground: #fafafa;
+  --muted: #251a26; /* Soft purple-gray for sections */
+  --muted-foreground: #d8b4fe; /* Light purple for secondary text */
+  --accent: #dc2626; /* Deep sunset red for emphasis */
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #3b1e3f; /* Subtle purple-tinted border */
+  --input: #1a1a1a;
+  --ring: #c026d3;
+  --chart-1: #c026d3;
+  --chart-2: #e879f9;
+  --chart-3: #dc2626;
+  --chart-4: #f472b6;
+  --chart-5: #3b1e3f;
+  --sidebar: #1a1a1a;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #c026d3;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #251a26;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: #3b1e3f;
+  --sidebar-ring: #c026d3;
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground transition-colors duration-500;
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11", "ss01";
+    font-variation-settings: "opsz" 32;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  h1 {
+    @apply text-4xl lg:text-5xl leading-[1.1];
+  }
+
+  h2 {
+    @apply text-3xl lg:text-4xl leading-[1.1];
+  }
+
+  h3 {
+    @apply text-2xl lg:text-3xl leading-[1.2];
+  }
+
+  p {
+    @apply leading-7;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Professional Button System - Enhanced with subtle animations and theme awareness */
+.elegant-button {
+  @apply inline-flex items-center justify-center px-6 py-3;
+  @apply bg-primary text-primary-foreground;
+  @apply rounded-xl font-semibold text-sm;
+  @apply transition-all duration-300 ease-out;
+  @apply shadow-lg hover:shadow-xl;
+  @apply hover:scale-[1.03] active:scale-[0.97];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply relative overflow-hidden;
+  cursor: pointer;
+}
+
+.elegant-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 500ms ease-out;
+}
+
+.elegant-button:hover::before {
+  left: 100%;
+}
+
+.elegant-button-secondary {
+  @apply bg-secondary text-secondary-foreground;
+  @apply border border-border hover:border-primary;
+  @apply hover:bg-secondary hover:scale-[1.03];
+  @apply shadow-md hover:shadow-lg;
+  @apply relative overflow-hidden;
+}
+
+.elegant-button-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(var(--primary-rgb, 217, 119, 6), 0.05), transparent);
+  transition: left 500ms ease-out;
+}
+
+.elegant-button-secondary:hover::before {
+  left: 100%;
+}
+
+.elegant-button-ghost {
+  @apply bg-transparent text-foreground;
+  @apply hover:bg-secondary hover:text-primary;
+  @apply shadow-none hover:shadow-md;
+  @apply border border-transparent hover:border-primary;
+  @apply hover:scale-[1.03];
+  @apply backdrop-blur-sm;
+}
+
+/* Sophisticated card styling with refined interactions */
+.elegant-card {
+  @apply bg-card text-card-foreground;
+  @apply border border-border rounded-xl;
+  @apply p-6 transition-all duration-300 ease-out;
+  @apply shadow-sm hover:shadow-lg;
+  @apply hover:-translate-y-1;
+  position: relative;
+  cursor: pointer;
+}
+
+.elegant-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent 0%, rgba(217, 119, 6, 0.02) 50%, transparent 100%);
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  pointer-events: none;
+}
+
+.elegant-card:hover::before {
+  opacity: 1;
+}
+
+/* Typography enhancements */
+.elegant-title {
+  @apply font-semibold text-foreground;
+  @apply tracking-tight leading-tight;
+  font-feature-settings: "cv11", "ss01";
+}
+
+.elegant-subtitle {
+  @apply text-muted-foreground;
+  @apply leading-relaxed;
+}
+
+/* Subtle animations */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+.gentle-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+/* Gradient backgrounds for visual interest */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--background) 0%, var(--muted) 100%);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Mobile-optimized navigation */
+.mobile-menu {
+  @apply fixed inset-x-0 top-16 z-40;
+  @apply bg-background backdrop-blur;
+  @apply border-b border-border;
+  @apply shadow-lg;
+}
+
+/* Enhanced focus states for accessibility */
+.elegant-focus {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+}
+
+/* Smooth scroll behavior for navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Loading states */
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.loading-pulse {
+  animation: pulse-subtle 2s ease-in-out infinite;
+}
+
+/* Enhanced article cards with subtle gradients */
+.elegant-card-enhanced {
+  @apply elegant-card;
+  background: linear-gradient(145deg, var(--card) 0%, color-mix(in srgb, var(--card) 98%, var(--primary) 2%) 100%);
+}
+
+/* Enhanced button variants with professional styling */
+.elegant-button-outline {
+  @apply inline-flex items-center justify-center px-6 py-3;
+  @apply bg-transparent border-2 border-primary text-primary;
+  @apply rounded-xl font-semibold text-sm;
+  @apply transition-all duration-300 ease-out;
+  @apply shadow-md hover:shadow-xl;
+  @apply hover:bg-primary hover:text-primary-foreground;
+  @apply hover:scale-[1.03] active:scale-[0.97];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply relative overflow-hidden;
+  cursor: pointer;
+}
+
+.elegant-button-outline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary);
+  transition: left 400ms ease-out;
+  z-index: -1;
+}
+
+.elegant-button-outline:hover::before {
+  left: 0;
+}
+
+/* Professional CTA Button */
+.elegant-button-cta {
+  @apply elegant-button;
+  @apply text-lg px-8 py-4;
+  @apply bg-gradient-to-r from-primary to-accent;
+  @apply hover:from-accent hover:to-primary;
+  @apply shadow-xl hover:shadow-2xl;
+  @apply hover:scale-[1.05];
+}
+
+/* Subtle Button for less prominent actions */
+.elegant-button-subtle {
+  @apply inline-flex items-center justify-center px-4 py-2;
+  @apply bg-muted text-muted-foreground;
+  @apply rounded-lg font-medium text-sm;
+  @apply transition-all duration-200 ease-out;
+  @apply hover:bg-muted hover:text-foreground;
+  @apply hover:scale-[1.02];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+  cursor: pointer;
+}
+
+/* Line clamp utilities for better text truncation */
+.line-clamp-2 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.line-clamp-3 {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+/* Advanced animation utilities */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Enhanced card hover effects with physics-based animations */
+.elegant-card {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.elegant-card:hover {
+  transform: translateY(-8px) translateZ(0);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Theme-aware enhanced shadows */
+:root .elegant-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(217, 119, 6, 0.15);
+}
+
+.dark .elegant-card:hover {
+  box-shadow: 0 25px 50px -12px rgba(192, 38, 211, 0.20);
+}
+
+/* Sophisticated micro-interactions */
+.micro-bounce {
+  transition: transform 0.2s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.micro-bounce:hover {
+  transform: scale(1.05);
+}
+
+.micro-bounce:active {
+  transform: scale(0.95);
+}
+
+/* Performance optimizations for animations */
+* {
+  will-change: auto;
+}
+
+.animate-fade-in-up,
+.animate-fade-in-down,
+.animate-stagger {
+  will-change: transform, opacity;
+}
+
+/* Reduced motion preferences - Enhanced accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-fade-in,
+  .animate-fade-in-up,
+  .animate-fade-in-down,
+  .animate-slide-in-left,
+  .animate-slide-in-right,
+  .animate-scale-in,
+  .animate-stagger,
+  .animate-on-scroll,
+  .fade-in-up,
+  .gentle-float,
+  .animate-pulse,
+  .animate-gentle-bounce {
+    animation: none !important;
+  }
+
+  .elegant-card,
+  .micro-bounce {
+    transform: none !important;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .elegant-card:hover,
+  .micro-bounce:hover {
+    transform: none !important;
+  }
+
+  /* Preserve focus states for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--primary) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .elegant-card {
+    border-width: 2px;
+  }
+
+  .gradient-text,
+  .gradient-text-theme {
+    background: none !important;
+    -webkit-background-clip: initial !important;
+    -webkit-text-fill-color: initial !important;
+    background-clip: initial !important;
+    color: var(--primary) !important;
+  }
+}
+
+/* Focus management improvements */
+.elegant-focus,
+.elegant-button,
+.elegant-button-secondary,
+.elegant-button-ghost,
+.elegant-button-outline {
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+}
+
+/* Enhanced keyboard navigation */
+.elegant-card:focus-within {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Screen reader improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Typography scale improvements */
+@media (max-width: 640px) {
+  .elegant-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+  }
+}
+
+/* Dark mode specific enhancements */
+.dark .elegant-card::before {
+  background: linear-gradient(135deg, transparent 0%, rgba(192, 38, 211, 0.03) 50%, transparent 100%);
+}
+
+/* Theme-specific gradient enhancements */
+.sunrise-gradient {
+  background: linear-gradient(135deg,
+    rgba(217, 119, 6, 0.05) 0%,
+    rgba(245, 158, 11, 0.02) 35%,
+    transparent 100%);
+}
+
+.sunset-gradient {
+  background: linear-gradient(135deg,
+    rgba(192, 38, 211, 0.05) 0%,
+    rgba(220, 38, 38, 0.02) 35%,
+    transparent 100%);
+}
+
+/* Theme-specific glow effects for enhanced visual distinction */
+.sunrise-glow {
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.1);
+}
+
+.dark .sunset-glow {
+  box-shadow: 0 0 20px rgba(192, 38, 211, 0.15);
+}
+
+/* Enhanced button hover states with theme colors */
+.elegant-button:hover,
+.elegant-button-outline:hover,
+.elegant-button-cta:hover {
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb, 217, 119, 6), 0.25);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.dark .elegant-button:hover,
+.dark .elegant-button-outline:hover,
+.dark .elegant-button-cta:hover {
+  box-shadow: 0 8px 25px rgba(var(--primary-rgb, 192, 38, 211), 0.3);
+}
+
+/* Button group spacing */
+.button-group {
+  @apply flex flex-col sm:flex-row gap-3 justify-center items-center;
+}
+
+.button-group > * {
+  @apply min-w-[140px];
+}
+
+/* Responsive button sizing */
+@media (max-width: 640px) {
+  .elegant-button,
+  .elegant-button-secondary,
+  .elegant-button-ghost,
+  .elegant-button-outline {
+    @apply w-full max-w-xs;
+  }
+
+  .elegant-button-cta {
+    @apply w-full max-w-sm px-6 py-3 text-base;
+  }
+}
+
+/* Subtle theme-specific text shadows for enhanced readability */
+.theme-shadow {
+  text-shadow: 0 1px 2px rgba(217, 119, 6, 0.1);
+}
+
+.dark .theme-shadow {
+  text-shadow: 0 1px 2px rgba(192, 38, 211, 0.15);
+}
+
+/* Utility classes for theme-aware components */
+.theme-aware {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.theme-aware:hover {
+  transform: translateY(-1px);
+}
+
+/* Light theme (sunrise) specific styles */
+:root .theme-aware:hover {
+  box-shadow: 0 4px 16px rgba(217, 119, 6, 0.12);
+}
+
+/* Dark theme (sunset) specific styles */
+.dark .theme-aware:hover {
+  box-shadow: 0 4px 16px rgba(192, 38, 211, 0.18);
+}
+
+/* Enhanced gradient text with theme colors */
+.gradient-text-theme {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+}
+
+/* Theme-specific accent borders */
+.accent-border {
+  border-color: var(--primary);
+  border-width: 1px;
+  transition: border-color 200ms ease;
+}
+
+.accent-border:hover {
+  border-color: var(--accent);
+}
+
+/* Improved transitions for theme switching */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

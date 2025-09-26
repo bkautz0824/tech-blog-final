@@ -65,90 +65,104 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   }
 
   return (
-    <article className="max-w-4xl mx-auto">
-      {/* Article Header */}
-      <header className="mb-8">
-        <div className="mb-3">
-          <Link href="/" className="text-primary hover:underline font-mono text-xs">
-            ← Back to Home
+    <div className="article-reading-glow min-h-screen">
+      <article className="max-w-4xl mx-auto relative z-10">
+        {/* Article Header */}
+        <header className="mb-8 p-6 bg-card/50 backdrop-blur-sm rounded-xl border border-border/50 shadow-lg"
+                style={{
+                  boxShadow: '0 8px 32px rgba(var(--primary-rgb, 217, 119, 6), 0.1)'
+                }}>
+          <div className="mb-3">
+            <Link href="/" className="text-primary hover:underline font-mono text-xs category-badge-glow inline-block px-2 py-1 rounded transition-all duration-300">
+              ← Back to Home
+            </Link>
+          </div>
+          <div className="mb-3">
+            <span className="inline-block px-3 py-1 bg-primary/20 text-primary font-mono text-xs uppercase rounded category-badge-glow">
+              {article.category}
+            </span>
+          </div>
+          <h1 className="retro-title text-2xl md:text-3xl mb-3 leading-tight gradient-text-theme">
+            {article.title}
+          </h1>
+          <p className="text-lg text-muted-foreground mb-3 leading-relaxed">
+            {article.description}
+          </p>
+          <div className="flex items-center gap-4 text-xs text-muted-foreground">
+            <span>Published: {new Date(article.date).toLocaleDateString()}</span>
+          </div>
+
+          {/* Subtle decorative line */}
+          <div className="w-24 h-0.5 bg-gradient-to-r from-primary to-accent mt-4 rounded-full shadow-sm"
+               style={{
+                 boxShadow: '0 0 8px rgba(var(--primary-rgb, 217, 119, 6), 0.3)'
+               }} />
+        </header>
+
+        {/* Article Content */}
+        <div className="prose prose-lg dark:prose-invert max-w-none">
+          <div className="article-content-card">
+            <div
+              className="article-content"
+              dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
+            />
+          </div>
+
+          {/* Key Features Section */}
+          {article.keyFeatures && article.keyFeatures.length > 0 && (
+            <div className="article-content-card">
+              <h2 className="retro-subtitle text-2xl mb-6 gradient-text-theme">Key Features</h2>
+              <ul className="space-y-4">
+                {article.keyFeatures.map((feature, index) => (
+                  <li key={index} className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
+                    <span className="text-primary font-mono text-lg mt-0.5 shadow-sm">▸</span>
+                    <span className="leading-relaxed flex-1">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {/* Related Links */}
+          {article.urls && article.urls.length > 0 && (
+            <div className="article-content-card">
+              <h2 className="retro-subtitle text-2xl mb-6 gradient-text-theme">Related Links</h2>
+              <ul className="space-y-4">
+                {article.urls.map((url, index) => (
+                  <li key={index} className="p-3 rounded-lg bg-accent/5 border border-accent/10">
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:text-accent font-mono text-sm break-all transition-colors duration-300 category-badge-glow inline-block"
+                    >
+                      {url} ↗
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        {/* Navigation */}
+        <nav className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-between p-6 bg-card/30 backdrop-blur-sm rounded-xl border border-border/50"
+             style={{
+               boxShadow: '0 4px 16px rgba(var(--primary-rgb, 217, 119, 6), 0.05)'
+             }}>
+          <Link href="/articles" className="category-badge-glow">
+            <RetroButton variant="secondary">
+              All Articles
+            </RetroButton>
           </Link>
-        </div>
-        <div className="mb-3">
-          <span className="inline-block px-3 py-1 bg-primary/20 text-primary font-mono text-xs uppercase rounded">
-            {article.category}
-          </span>
-        </div>
-        <h1 className="retro-title text-2xl md:text-3xl mb-3 leading-tight">
-          {article.title}
-        </h1>
-        <p className="text-lg text-muted-foreground mb-3 leading-relaxed">
-          {article.description}
-        </p>
-        <div className="flex items-center gap-4 text-xs text-muted-foreground">
-          <span>Published: {new Date(article.date).toLocaleDateString()}</span>
-        </div>
-      </header>
-
-      {/* Article Content */}
-      <div className="prose prose-lg dark:prose-invert max-w-none">
-        <div className="bg-card border-2 border-border rounded-lg p-6 mb-8">
-          <div
-            className="article-content"
-            dangerouslySetInnerHTML={{ __html: formatContent(article.content) }}
-          />
-        </div>
-
-        {/* Key Features Section */}
-        {article.keyFeatures && article.keyFeatures.length > 0 && (
-          <div className="bg-card border-2 border-border rounded-lg p-6 mb-8">
-            <h2 className="retro-subtitle text-2xl mb-4">Key Features</h2>
-            <ul className="space-y-3">
-              {article.keyFeatures.map((feature, index) => (
-                <li key={index} className="flex items-start gap-3">
-                  <span className="text-primary font-mono text-lg">▸</span>
-                  <span className="leading-relaxed">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-
-        {/* Related Links */}
-        {article.urls && article.urls.length > 0 && (
-          <div className="bg-card border-2 border-border rounded-lg p-6 mb-8">
-            <h2 className="retro-subtitle text-2xl mb-4">Related Links</h2>
-            <ul className="space-y-3">
-              {article.urls.map((url, index) => (
-                <li key={index}>
-                  <a
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline font-mono text-sm break-all"
-                  >
-                    {url} ↗
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-
-      {/* Navigation */}
-      <nav className="mt-8 flex flex-col sm:flex-row gap-4 sm:justify-between">
-        <Link href="/articles">
-          <RetroButton variant="secondary">
-            All Articles
-          </RetroButton>
-        </Link>
-        <Link href="/">
-          <RetroButton>
-            Back to Home
-          </RetroButton>
-        </Link>
-      </nav>
-    </article>
+          <Link href="/" className="category-badge-glow">
+            <RetroButton>
+              Back to Home
+            </RetroButton>
+          </Link>
+        </nav>
+      </article>
+    </div>
   )
 }
 

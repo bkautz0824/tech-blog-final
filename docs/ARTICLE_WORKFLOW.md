@@ -43,31 +43,31 @@ Group tools by category for efficient processing:
 
 ## Vite
 - Category: Build Tools
-- Date: 2024-12-20
+- Date: 2025-09-20
 - Why: Lightning-fast dev server, HMR
 - URLs: https://vitejs.dev
 
 ## Astro
 - Category: React/Frontend
-- Date: 2024-12-19
+- Date: 2025-09-19
 - Why: Islands architecture, multi-framework
 - URLs: https://astro.build
 
 ## Solid.js
 - Category: React/Frontend
-- Date: 2024-12-18
+- Date: 2025-09-18
 - Why: Fine-grained reactivity, no VDOM
 - URLs: https://solidjs.com
 
 ## Qwik
 - Category: React/Frontend
-- Date: 2024-12-17
+- Date: 2025-09-17
 - Why: Resumability, instant apps
 - URLs: https://qwik.builder.io
 
 ## Svelte 5
 - Category: React/Frontend
-- Date: 2024-12-16
+- Date: 2025-09-16
 - Why: Runes, native reactivity
 - URLs: https://svelte.dev
 ```
@@ -130,7 +130,7 @@ The agent returns articles in this format:
   title: "Tool Name: Compelling Subtitle",
   description: "Brief overview in 2-3 sentences",
   category: "Category Name",
-  date: "2024-12-XX",
+  date: "2025-09-XX",
   content: `# Full markdown content...`,
   urls: ["https://..."],
   keyFeatures: ["feature1", "feature2", ...]
@@ -335,7 +335,7 @@ Write an article about Vite
 ```
 Create 2,500+ word article about Vite (build tool) for Build Tools category.
 
-Date: 2024-12-20
+Date: 2025-09-20
 URLs: https://vitejs.dev, https://github.com/vitejs/vite
 
 Focus on:

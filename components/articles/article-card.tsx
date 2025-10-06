@@ -16,8 +16,8 @@ export function ArticleCard({
   priority = false
 }: ArticleCardProps) {
   const cardClasses = featured
-    ? "elegant-card p-8 lg:p-12 max-w-4xl mx-auto relative overflow-hidden hover:scale-[1.01] transition-all duration-500 ease-out"
-    : "elegant-card h-full flex flex-col relative overflow-hidden group-hover:scale-[1.03] transition-all duration-400 ease-out hover:shadow-2xl"
+    ? "elegant-card p-8 lg:p-12 max-w-4xl mx-auto relative overflow-hidden"
+    : "elegant-card h-full flex flex-col relative overflow-hidden"
 
   return (
     <Link href={`/articles/${article.id}`} className="group block h-full">
@@ -26,7 +26,10 @@ export function ArticleCard({
         {featured ? (
           <>
             <div className="flex flex-wrap items-center gap-4 mb-6">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full">
+              <span className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary text-sm font-medium rounded-full category-badge-glow border border-primary/20 shadow-sm"
+                    style={{
+                      boxShadow: '0 2px 8px rgba(var(--primary-rgb, 217, 119, 6), 0.15)'
+                    }}>
                 <TagIcon className="h-4 w-4" />
                 {article.category}
               </span>
@@ -46,7 +49,7 @@ export function ArticleCard({
               )}
             </div>
 
-            <h3 className="elegant-title text-2xl lg:text-3xl font-bold mb-4 group-hover:text-primary transition-colors duration-300">
+            <h3 className="elegant-title text-2xl lg:text-3xl font-bold mb-4">
               {article.title}
             </h3>
             <p className="text-lg text-muted-foreground leading-relaxed mb-6">
@@ -69,17 +72,19 @@ export function ArticleCard({
         ) : (
           <>
             {/* Regular article card layout */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/0 via-primary/0 to-accent/0 group-hover:from-primary/3 group-hover:via-primary/1 group-hover:to-accent/3 transition-all duration-500 ease-out rounded-xl pointer-events-none" />
 
             <div className="relative">
               <div className="flex items-center gap-3 mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 group-hover:bg-primary/20 group-hover:border-primary/30 group-hover:scale-105 transition-all duration-300">
-                  <TagIcon className="h-3 w-3 group-hover:rotate-12 transition-transform duration-300" />
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-primary/10 text-primary text-xs font-medium rounded-full border border-primary/20 shadow-sm"
+                      style={{
+                        boxShadow: '0 2px 6px rgba(var(--primary-rgb, 217, 119, 6), 0.12)'
+                      }}>
+                  <TagIcon className="h-3 w-3" />
                   {article.category}
                 </span>
               </div>
 
-              <h3 className="elegant-title text-xl font-semibold mb-3 group-hover:text-primary transition-colors duration-300 line-clamp-2">
+              <h3 className="elegant-title text-xl font-semibold mb-3 line-clamp-2">
                 {article.title}
               </h3>
 
@@ -87,10 +92,10 @@ export function ArticleCard({
                 {article.description}
               </p>
 
-              <div className="flex items-center justify-between pt-4 border-t border-border/50 group-hover:border-primary/30 transition-colors duration-300">
+              <div className="flex items-center justify-between pt-4 border-t border-border/50">
                 <div className="flex items-center gap-3 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1.5">
-                    <CalendarIcon className="h-4 w-4 group-hover:text-primary transition-colors duration-300" />
+                    <CalendarIcon className="h-4 w-4" />
                     <time dateTime={article.date}>
                       {new Date(article.date).toLocaleDateString('en-US', {
                         month: 'short',
@@ -106,9 +111,9 @@ export function ArticleCard({
                   )}
                 </div>
 
-                <div className="flex items-center gap-1.5 text-sm font-medium text-primary group-hover:text-accent transition-colors duration-300">
+                <div className="flex items-center gap-1.5 text-sm font-medium text-primary">
                   <span>Read more</span>
-                  <ArrowRightIcon className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
+                  <ArrowRightIcon className="h-4 w-4" />
                 </div>
               </div>
             </div>

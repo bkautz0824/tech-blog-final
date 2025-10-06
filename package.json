@@ -10,7 +10,16 @@
     "lint:check": "next lint",
     "type-check": "tsc --noEmit",
     "build:analyze": "ANALYZE=true next build",
-    "build:production": "NODE_ENV=production next build"
+    "build:production": "NODE_ENV=production next build",
+    "convex:dev": "npx convex dev",
+    "convex:deploy": "npx convex deploy",
+    "migrate:test": "tsx scripts/migrate-articles.ts test",
+    "migrate:validate": "tsx scripts/migrate-articles.ts validate",
+    "migrate:batch-2a": "tsx scripts/migrate-batch-2a.ts",
+    "migrate:verify": "tsx scripts/verify-convex-articles.ts",
+    "enhance:batch-2a": "tsx scripts/enhance-batch-2a.ts",
+    "enhance:batch-2a-part2": "tsx scripts/enhance-batch-2a-part2.ts",
+    "enhance:all": "npm run enhance:batch-2a && npm run enhance:batch-2a-part2"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +31,7 @@
     "@types/react-dom": "^19.1.9",
     "autoprefixer": "^10.4.21",
     "clsx": "^2.1.1",
+    "convex": "^1.27.3",
     "geist": "^1.5.1",
     "next": "^15.5.4",
     "postcss": "^8.5.6",
@@ -37,6 +47,7 @@
     "@types/react": "^19.1.13",
     "eslint": "^8.57.0",
     "eslint-config-next": "^15.5.4",
+    "tsx": "^4.20.6",
     "typescript": "^5.7.2"
   },
   "engines": {

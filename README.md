@@ -264,7 +264,7 @@ The blog currently contains 17 comprehensive articles across 10 categories.
 
 #### Phase 1: Complete Core Categories (Target: 30 articles)
 - Add 3 articles per major category
-- Focus on trending tools from 2024-2025
+- Focus on trending tools from 2025-2026
 - Prioritize tools with active communities
 
 #### Phase 2: Expand Emerging Categories (Target: 50 articles)

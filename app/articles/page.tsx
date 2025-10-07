@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { TagIcon, ArrowRightIcon } from '@heroicons/react/24/outline'
 import { ArticlesGrid } from '@/components/articles/articles-grid'
-import { getArticlesCached, preloadArticles } from '@/lib/articles-server'
+import { getArticlesCached, preloadArticles } from '@/lib/articles-convex'
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 

@@ -1,5 +1,5 @@
 import { ArticleCard } from './article-card'
-import type { Article } from '@/lib/articles-server'
+import type { Article } from '@/lib/articles-convex'
 
 interface ArticlesGridProps {
   articles: Article[]

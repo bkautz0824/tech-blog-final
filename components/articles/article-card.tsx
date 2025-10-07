@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { CalendarIcon, TagIcon, ArrowRightIcon, ClockIcon } from '@heroicons/react/24/outline'
-import type { Article } from '@/lib/articles-server'
+import type { Article } from '@/lib/articles-convex'
 
 interface ArticleCardProps {
   article: Article
@@ -58,12 +58,12 @@ export function ArticleCard({
 
             {article.keyFeatures && (
               <div className="flex flex-wrap gap-2">
-                {article.keyFeatures.map((feature, index) => (
+                {article.keyFeatures.slice(0, 4).map((feature, index) => (
                   <span
                     key={index}
                     className="px-3 py-1 text-xs font-medium bg-secondary text-secondary-foreground rounded-full"
                   >
-                    {feature}
+                    {typeof feature === 'string' ? feature : feature.title}
                   </span>
                 ))}
               </div>

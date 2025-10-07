@@ -25,5 +25,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "../dev_tools_content", "scripts/*.ts", "scripts/*.mjs", "*-upload-script.ts", "enhance-*.ts"]
 }

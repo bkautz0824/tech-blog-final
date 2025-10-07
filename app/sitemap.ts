@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { getSitemapData } from '@/lib/articles-server'
+import { getSitemapData } from '@/lib/articles-convex'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://your-domain.com'

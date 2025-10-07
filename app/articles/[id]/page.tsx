@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { RetroButton } from '@/components/retro-button'
-import { getArticleByIdCached, getArticlesCached, getArticleMetadata, preloadArticle } from '@/lib/articles-server'
+import { getArticleByIdCached, getArticlesCached, getArticleMetadata, preloadArticle } from '@/lib/articles-convex'
 import type { Metadata } from 'next'
 
 interface ArticlePageProps {
@@ -114,9 +114,14 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
               <h2 className="retro-subtitle text-2xl mb-6 gradient-text-theme">Key Features</h2>
               <ul className="space-y-4">
                 {article.keyFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-start gap-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                    <span className="text-primary font-mono text-lg mt-0.5 shadow-sm">▸</span>
-                    <span className="leading-relaxed flex-1">{feature}</span>
+                  <li key={index} className="flex flex-col gap-2 p-4 rounded-lg bg-primary/5 border border-primary/10">
+                    <div className="flex items-start gap-3">
+                      <span className="text-primary font-mono text-lg mt-0.5 shadow-sm">▸</span>
+                      <span className="font-semibold text-primary flex-1">{typeof feature === 'string' ? feature : feature.title}</span>
+                    </div>
+                    {typeof feature === 'object' && feature.description && (
+                      <p className="text-muted-foreground ml-7 text-sm">{feature.description}</p>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -128,18 +133,22 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <div className="article-content-card">
               <h2 className="retro-subtitle text-2xl mb-6 gradient-text-theme">Related Links</h2>
               <ul className="space-y-4">
-                {article.urls.map((url, index) => (
-                  <li key={index} className="p-3 rounded-lg bg-accent/5 border border-accent/10">
-                    <a
-                      href={url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:text-accent font-mono text-sm break-all transition-colors duration-300 category-badge-glow inline-block"
-                    >
-                      {url} ↗
-                    </a>
-                  </li>
-                ))}
+                {article.urls.map((urlItem, index) => {
+                  const url = typeof urlItem === 'string' ? urlItem : urlItem.url;
+                  const title = typeof urlItem === 'object' ? urlItem.title : url;
+                  return (
+                    <li key={index} className="p-3 rounded-lg bg-accent/5 border border-accent/10">
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-accent font-mono text-sm break-all transition-colors duration-300 category-badge-glow inline-block"
+                      >
+                        {title} ↗
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           )}

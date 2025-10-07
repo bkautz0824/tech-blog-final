@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { AppWrapper } from '@/components/app-wrapper'
+import { ConvexClientProvider } from '@/components/convex-client-provider'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -75,10 +76,11 @@ export default function RootLayout({
           Skip to main content
         </a>
 
-        <AppWrapper>
-          <main id="main-content" className="flex-1" role="main" aria-label="Main content">
-            {children}
-          </main>
+        <ConvexClientProvider>
+          <AppWrapper>
+            <main id="main-content" className="flex-1" role="main" aria-label="Main content">
+              {children}
+            </main>
           <footer
             className="border-t border-border/40 bg-muted/20 mt-24"
             role="contentinfo"
@@ -131,7 +133,8 @@ export default function RootLayout({
               </div>
             </div>
           </footer>
-        </AppWrapper>
+          </AppWrapper>
+        </ConvexClientProvider>
       </body>
     </html>
   )

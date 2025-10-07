@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { TagIcon } from '@heroicons/react/24/outline'
 import { HeroSection } from '@/components/hero-section'
 import { ArticlesGrid } from '@/components/articles/articles-grid'
-import { getFeaturedArticles, getCategoriesCached, preloadArticles, preloadCategories } from '@/lib/articles-server'
+import { getFeaturedArticles, getCategoriesCached, preloadArticles, preloadCategories } from '@/lib/articles-convex'
 import { Suspense } from 'react'
 
 // Preload data at build time
